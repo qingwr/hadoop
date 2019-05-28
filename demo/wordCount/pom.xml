@@ -38,7 +38,7 @@
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
                             <!--mainclass指的是运行类的全类名-->
-                            <mainClass>gz.dasijiaoyu.hadoop.WordCount</mainClass>
+                            <!--<mainClass>gz.dasijiaoyu.hadoop.WordCount</mainClass>-->
                         </manifest>
                     </archive>
                 </configuration>
