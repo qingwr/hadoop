@@ -1,0 +1,5 @@
+hadoop jar ~/app/hadoop-2.4.1/share/hadoop/tools/lib/hadoop-streaming-2.4.1.jar -input /demo/first/input/case.txt -output /demo/first/output -mapper ./reduce.py -reducer ./reduce.py
+
+-input -oupt: hdf的目录
+-mapper -reducer :OS上的目录
+
