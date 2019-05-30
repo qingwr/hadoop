@@ -47,19 +47,24 @@ public class WordCount {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "word count");
-        job.setJarByClass(WordCount.class);
-        job.setMapperClass(TokenizerMapper.class);
-        if(args.length > 2 && "combiner".equals(args[2])){
-            job.setCombinerClass(IntSumReducer.class);
+    public static void main(String[] args)  {
+        try {
+            Configuration conf = new Configuration();
+            Job job = Job.getInstance(conf, "word count");
+            job.setJarByClass(WordCount.class);
+            job.setMapperClass(TokenizerMapper.class);
+            if(args.length > 2 && "combiner".equals(args[2])){
+                job.setCombinerClass(IntSumReducer.class);
+            }
+            job.setReducerClass(IntSumReducer.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(IntWritable.class);
+            FileInputFormat.addInputPath(job, new Path(args[0]));
+            FileOutputFormat.setOutputPath(job, new Path(args[1]));
+            System.exit(job.waitForCompletion(true) ? 0 : 1);
+        }catch (Exception e){
+            System.out.println("usage message %hadoop jar wordCount-1.0-SNAPSHOT.jar gz.dasijiaoyu.hadoop.WordCount dfsInput dfsOut" );
+            e.printStackTrace();
         }
-        job.setReducerClass(IntSumReducer.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
