@@ -11,6 +11,7 @@
     <!--<packaging>war</packaging>-->
     <modules>
         <module>demo</module>
+        <module>parody</module>
     </modules>
 
 </project>
